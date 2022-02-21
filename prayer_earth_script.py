@@ -14,13 +14,14 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-data = pd.read_csv('geonames-all-cities-with-a-population-1000.csv',sep=';')
+# data = pd.read_csv('geonames-all-cities-with-a-population-1000.csv',sep=';')
+#read the opendatasoft cities dataset
+
+#splitting long&lat
+# data[['Lat', 'Long']] = data['Coordinates'].str.split(',', 1, expand=True)
 
 
-data[['Lat', 'Long']] = data['Coordinates'].str.split(',', 1, expand=True)
-
-
-count = 0
+#get times for every one of the five daily prayers for each of the cities and put them into a dataframe
 def rowfunc(x):
     global count
     times = PrayTimes().getTimes(date.today(), (float(x.Lat),float(x.Long)),0)
@@ -29,13 +30,14 @@ def rowfunc(x):
             if time!='-----':
                 hrs,mins = time.split(':')
                 x[prayer] = int(hrs)*60 + int(mins)
-    count+=1
-    print(count)
     return x
 
-data = data.apply(rowfunc,axis =1)
+# data = data.apply(rowfunc,axis =1)
 # data.to_csv('city_praytimes')
 
+# ---- above data pre=procesing is optional and will take time, provided csv has the processed data ----
+
+#return a nice UTC time string
 def get_time_string(mins):
     hrs = int(np.floor(mins/60))
     mins = mins%60
@@ -53,6 +55,7 @@ def get_time_string(mins):
     return f'{hourstring}:{minstring} UTC'
 
 
+#read saved csv
 data = pd.read_csv('city_praytimes.csv')
 plt.ion()
 fig,ax0 = plt.subplots(figsize=(10,10))
@@ -79,6 +82,8 @@ zoom_prop = 2.0
 
 gif_indx = 0
 mks = 15
+
+#custom legend and legend attributes, with markers for each prayer
 legend_elements = [Line2D([0], [0],marker = 'o',lw=0, color=praycolors['fajr'], label='Fajr', markersize=mks),
                    Line2D([0], [0],marker = 'o', lw=0,color=praycolors['dhuhr'], label='Dhuhr', markersize=mks),
                    Line2D([0], [0],marker = 'o', lw=0,color=praycolors['asr'], label='Asr', markersize=mks),
