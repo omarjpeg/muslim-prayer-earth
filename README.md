@@ -6,6 +6,6 @@ These prayers provide a spiritual connection between every Muslim and their lord
 
 Visualized below, the call for prayer is called along every line along the earth's vertical axis from pole to pole! 
 
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/WbuIbGXffJI)
+[![Watch the video](https://img.youtube.com/vi/WbuIbGXffJI/maxresdefault.jpg)(https://i.imgur.com/vKb2F1B.png)](https://youtu.be/WbuIbGXffJI)
 
-This visualization uses the PrayTimes(https://gist.github.com/zsmahi/3761923) module by @zsmahi(https://github.com/zsmahi)
+This visualization uses the [PrayTimes](https://gist.github.com/zsmahi/3761923) module by @[zsmahi](https://github.com/zsmahi)
