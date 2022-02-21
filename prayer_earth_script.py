@@ -1,10 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
 
-# In[5]:
-
-
-# This is a sample Python script.
 import numpy as np
 import pandas as pd
 import praytimes
@@ -20,19 +14,10 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-# In[10]:
-
-
 data = pd.read_csv('geonames-all-cities-with-a-population-1000.csv',sep=';')
 
 
-# In[11]:
-
-
 data[['Lat', 'Long']] = data['Coordinates'].str.split(',', 1, expand=True)
-
-
-# In[16]:
 
 
 count = 0
@@ -48,12 +33,8 @@ def rowfunc(x):
     print(count)
     return x
 
-# data = data.apply(rowfunc,axis =1)
+data = data.apply(rowfunc,axis =1)
 # data.to_csv('city_praytimes')
-
-
-# In[25]:
-
 
 def get_time_string(mins):
     hrs = int(np.floor(mins/60))
@@ -70,9 +51,6 @@ def get_time_string(mins):
     else:
         minstring = str(mins)    
     return f'{hourstring}:{minstring} UTC'
-
-
-# In[ ]:
 
 
 data = pd.read_csv('city_praytimes.csv')
@@ -136,9 +114,6 @@ for pp in range(0,rotation_steps):
     fig.savefig(rf'.\temp{pp}.png', dpi=fig.dpi)
     plt.pause(0.01)
     gif_indx+=1
-
-
-# In[22]:
 
 
 filenames = [rf'.\temp{i}.png' for i in range(0,rotation_steps)]
